@@ -19,20 +19,19 @@ let state = states.init;
 class Floor {
   #y;
   #height;
-  #color;
   constructor() {
     this.#y = 550;
     this.#height = 50;
-    this.#color = "#fff";
   }
 
   draw() {
-    ctx.fillStyle = this.#color;
-    ctx.fillRect(0, this.#y, WIDTH, this.#height);
+    let imgFloor = document.createElement("img");
+    imgFloor.src = "../public/assets/floor.png";
+    ctx.drawImage(imgFloor, 0, this.#y, WIDTH, this.#height);
   }
 
   getAttr() {
-    return { y: this.#y, height: this.#height, color: this.#color };
+    return { y: this.#y, height: this.#height };
   }
 }
 
@@ -44,7 +43,6 @@ class Box {
   #y;
   #height;
   #width;
-  #color;
   #velocity;
   #qtdeJumps;
   #jumpHeight;
@@ -55,7 +53,6 @@ class Box {
     this.#y = 0;
     this.#height = 50;
     this.#width = 50;
-    this.#color = "#fff";
     this.#velocity = 0;
     this.#qtdeJumps = 0;
     this.#jumpHeight = 20;
@@ -82,8 +79,9 @@ class Box {
   }
 
   draw() {
-    ctx.fillStyle = this.#color;
-    ctx.fillRect(this.#x, this.#y, this.#width, this.#height);
+    let imgBox = document.createElement("img");
+    imgBox.src = "../public/assets/box.png";
+    ctx.drawImage(imgBox, this.#x, this.#y, this.#width, this.#height);
   }
 
   getAttr() {
@@ -92,7 +90,6 @@ class Box {
       y: this.#y,
       height: this.#height,
       width: this.#width,
-      color: this.#color,
       velocity: this.#velocity,
       qtdeJumps: this.#qtdeJumps,
       jumpHeight: this.#jumpHeight,
@@ -111,21 +108,18 @@ let player = new Box();
 // CLASSE OBSTÁCULOS
 class Obstacles {
   #obstaclesArr;
-  #colors;
   #interval;
 
   constructor() {
     this.#obstaclesArr = [];
-    this.#colors = ["#000080", "#00FA9A", "#7CFC00", "#4B0082", "#FFFF00"];
     this.#interval = 0;
   }
 
   insert() {
     this.#obstaclesArr.push({
       x: WIDTH,
-      width: 25 + Math.floor(Math.random() * 30),
-      height: 25 + Math.floor(Math.random() * 80),
-      color: this.#colors[Math.floor(Math.random() * this.#colors.length)],
+      width: 25 + Math.floor(Math.random() * 25),
+      height: 30 + Math.floor(Math.random() * 80),
     });
 
     this.#interval = 50 + Math.floor(Math.random() * 20);
@@ -168,8 +162,9 @@ class Obstacles {
   draw() {
     for (let i = 0; i < this.#obstaclesArr.length; i++) {
       let obstacle = this.#obstaclesArr[i];
-      ctx.fillStyle = obstacle.color;
-      ctx.fillRect(
+      let imgObstacle = document.createElement("img");
+      imgObstacle.src = "../public/assets/obstacle.png";
+      ctx.drawImage(imgObstacle,
         obstacle.x,
         floor.getAttr().y - obstacle.height,
         obstacle.width,
@@ -219,8 +214,9 @@ function update() {
 
 // DESENHANDO OBJETOS
 function draw() {
-  ctx.fillStyle = "#000";
-  ctx.fillRect(0, 0, WIDTH, HEIGHT);
+  let imgBackground = document.createElement("img");
+  imgBackground.src = "../public/assets/background.png";
+  ctx.drawImage(imgBackground, 0, 0, WIDTH, HEIGHT);
 
   switch (state) {
     case states.init:
