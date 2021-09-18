@@ -1,5 +1,5 @@
 // VARIÁVEIS GLOBAIS
-let frames = 0;
+// let frames = 0;
 let HEIGHT = window.innerHeight;
 let WIDTH = window.innerWidth;
 let canvas = document.getElementById("game");
@@ -202,7 +202,7 @@ function click(event) {
 
 // ATUALIZANDO TELA
 function update() {
-  frames++;
+  // frames++;
 
   if (player.getAttr().y < 0) {
     state = states.lost;
@@ -229,6 +229,9 @@ function draw() {
       ctx.fillText("Iniciar", WIDTH / 2 - 50, HEIGHT / 2 - 50, 100, 100);
       break;
     case states.playing:
+      ctx.fillStyle = "#fff";
+      ctx.font = "bold 30px Arial"
+      ctx.fillText(score, 10, 50, 100, 100);
       obstacles.draw();
       break;
     case states.lost:
