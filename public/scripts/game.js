@@ -20,8 +20,8 @@ class Floor {
   #y;
   #height;
   constructor() {
-    this.#height = 50;
-    this.#y = HEIGHT - (this.#height * 2);
+    this.#height = 65;
+    this.#y = HEIGHT - (this.#height);
   }
 
   draw() {
@@ -255,7 +255,7 @@ function run() {
 // FUNÇÃO PRINCIPAL
 function main() {
   canvas.width = WIDTH - 10;
-  canvas.height = HEIGHT - floor.getAttr().height;
+  canvas.height = HEIGHT - 10;
 
   document.addEventListener("click", click);
   run();
