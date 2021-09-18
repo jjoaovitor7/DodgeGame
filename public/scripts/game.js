@@ -26,7 +26,7 @@ class Floor {
 
   draw() {
     let imgFloor = document.createElement("img");
-    imgFloor.src = "../public/assets/floor.png";
+    imgFloor.src = "./public/assets/floor.png";
     ctx.drawImage(imgFloor, 0, this.#y, WIDTH, this.#height);
   }
 
@@ -80,7 +80,7 @@ class Box {
 
   draw() {
     let imgBox = document.createElement("img");
-    imgBox.src = "../public/assets/box.png";
+    imgBox.src = "./public/assets/box.png";
     ctx.drawImage(imgBox, this.#x, this.#y, this.#width, this.#height);
   }
 
@@ -163,7 +163,7 @@ class Obstacles {
     for (let i = 0; i < this.#obstaclesArr.length; i++) {
       let obstacle = this.#obstaclesArr[i];
       let imgObstacle = document.createElement("img");
-      imgObstacle.src = "../public/assets/obstacle.png";
+      imgObstacle.src = "./public/assets/obstacle.png";
       ctx.drawImage(imgObstacle,
         obstacle.x,
         floor.getAttr().y - obstacle.height,
@@ -215,7 +215,7 @@ function update() {
 // DESENHANDO OBJETOS
 function draw() {
   let imgBackground = document.createElement("img");
-  imgBackground.src = "../public/assets/background.png";
+  imgBackground.src = "./public/assets/background.png";
   ctx.drawImage(imgBackground, 0, 0, WIDTH, HEIGHT);
 
   switch (state) {
