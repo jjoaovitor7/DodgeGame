@@ -222,19 +222,19 @@ function draw() {
     case states.init:
       ctx.fillStyle = "#fff";
       ctx.font = "bold 30px Arial"
-      ctx.fillText("Iniciar", WIDTH / 2 - 50, HEIGHT / 2 - 50, 100, 100);
+      ctx.fillText("Iniciar", WIDTH / 2 - 75 , HEIGHT / 2);
       break;
     case states.playing:
       ctx.fillStyle = "#fff";
       ctx.font = "bold 30px Arial"
-      ctx.fillText(score, 10, 50, 100, 100);
+      ctx.fillText(score, 10, 50);
       obstacles.draw();
       break;
     case states.lost:
       ctx.fillStyle = "#fff";
       ctx.font = "bold 30px Arial"
-      ctx.fillText("Game Over", WIDTH / 2 - 50, HEIGHT / 2 - 50, 100, 100);
-      ctx.fillText(`Score: ${score}`, WIDTH / 2 - 50, HEIGHT / 2, 100, 100);
+      ctx.fillText("Game Over", WIDTH / 2 - 75, HEIGHT / 2);
+      ctx.fillText(`Score: ${score}`, WIDTH / 2 - 75, (HEIGHT / 2) + 40);
       break;
     default:
       break;
