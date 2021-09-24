@@ -21,7 +21,7 @@ class Floor {
   #height;
   constructor() {
     this.#height = 65;
-    this.#y = HEIGHT - (this.#height);
+    this.#y = HEIGHT - this.#height;
   }
 
   draw() {
@@ -137,15 +137,24 @@ class Obstacles {
       obstacle.x -= 6;
 
       if (
-        player.getAttr().x < obstacle.x + obstacle.width &&
+        // COLISÃO
+        (player.getAttr().x < obstacle.x + obstacle.width &&
         player.getAttr().x + player.getAttr().width >= obstacle.x &&
         player.getAttr().y + player.getAttr().height >=
-          floor.getAttr().y - obstacle.height
+          floor.getAttr().y - obstacle.height) || player.getAttr().y < 0
       ) {
         state = states.lost;
-      }
+        canvas.style.transitionDuration = "0.1s";
+        canvas.style.transform = "translate(1rem, 1rem)";
+        canvas.style.transform = "translate(-1rem, -1rem)";
 
-      else if (obstacle.x <= -obstacle.width) {
+        let _intervalToResetStyle = setInterval(resetStyle, 50);
+
+        function resetStyle() {
+          canvas.removeAttribute("style");
+          clearInterval(_intervalToResetStyle);
+        }
+      } else if (obstacle.x <= -obstacle.width) {
         this.#obstaclesArr.splice(i, 1);
 
         if (state != states.lost) {
@@ -164,7 +173,8 @@ class Obstacles {
       let obstacle = this.#obstaclesArr[i];
       let imgObstacle = document.createElement("img");
       imgObstacle.src = "./public/assets/obstacle.png";
-      ctx.drawImage(imgObstacle,
+      ctx.drawImage(
+        imgObstacle,
         obstacle.x,
         floor.getAttr().y - obstacle.height,
         obstacle.width,
@@ -198,10 +208,6 @@ function click(event) {
 // ATUALIZANDO TELA
 function update() {
   // frames++;
-
-  if (player.getAttr().y < 0) {
-    state = states.lost;
-  }
   player.update();
   switch (state) {
     case states.playing:
@@ -221,20 +227,20 @@ function draw() {
   switch (state) {
     case states.init:
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 30px Arial"
-      ctx.fillText("Iniciar", WIDTH / 2 - 75 , HEIGHT / 2);
+      ctx.font = "bold 30px Arial";
+      ctx.fillText("Iniciar", WIDTH / 2 - 75, HEIGHT / 2);
       break;
     case states.playing:
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 30px Arial"
+      ctx.font = "bold 30px Arial";
       ctx.fillText(score, 10, 50);
       obstacles.draw();
       break;
     case states.lost:
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 30px Arial"
+      ctx.font = "bold 30px Arial";
       ctx.fillText("Game Over", WIDTH / 2 - 75, HEIGHT / 2);
-      ctx.fillText(`Score: ${score}`, WIDTH / 2 - 75, (HEIGHT / 2) + 40);
+      ctx.fillText(`Score: ${score}`, WIDTH / 2 - 75, HEIGHT / 2 + 40);
       break;
     default:
       break;
