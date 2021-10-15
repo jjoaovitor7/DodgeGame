@@ -139,9 +139,10 @@ class Obstacles {
       if (
         // COLISÃO
         (player.getAttr().x < obstacle.x + obstacle.width &&
-        player.getAttr().x + player.getAttr().width >= obstacle.x &&
-        player.getAttr().y + player.getAttr().height >=
-          floor.getAttr().y - obstacle.height) || player.getAttr().y < 0
+          player.getAttr().x + player.getAttr().width >= obstacle.x &&
+          player.getAttr().y + player.getAttr().height >=
+            floor.getAttr().y - obstacle.height) ||
+        player.getAttr().y < 0
       ) {
         state = states.lost;
         canvas.style.transitionDuration = "0.1s";
@@ -186,12 +187,29 @@ class Obstacles {
 
 let obstacles = new Obstacles();
 
+function getXY(canvas, e) {
+  // "MARGENS"
+  const canvasRect = canvas.getBoundingClientRect();
+
+  const y = e.clientY - canvasRect.top;
+  const x = e.clientX - canvasRect.left;
+
+  return { x: x, y: y };
+}
+
 // EVENTO DE CLICAR
 function click(event) {
+  let xy = getXY(canvas, event);
+
+  if (xy.x >= canvas.width / 3 && xy.x <= (canvas.width + 20) / 2) {
+    if (xy.y >= canvas.height / 3 && xy.y <= (canvas.height + 20) / 2) {
+      if (state == states.init) {
+        state = states.playing;
+      }
+    }
+  }
+
   switch (state) {
-    case states.init:
-      state = states.playing;
-      break;
     case states.playing:
       player.jump();
       break;
@@ -260,8 +278,8 @@ function run() {
 
 // FUNÇÃO PRINCIPAL
 function main() {
-  canvas.width = WIDTH - 10;
-  canvas.height = HEIGHT - 10;
+  canvas.width = WIDTH;
+  canvas.height = HEIGHT;
 
   document.addEventListener("click", click);
   run();
