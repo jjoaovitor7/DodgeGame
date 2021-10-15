@@ -263,11 +263,12 @@ function draw() {
       break;
     case states.tutorial:
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 1.4rem Arial";
+      ctx.font = "bold 1.5rem Arial";
       ctx.fillText("O DodgeGame consiste em desviar de obstáculos.", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 );
-      ctx.fillText("Para desviar dos obstáculos (pular) é necessário clicar com o mouse na tela.", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 30);
-      ctx.fillText("No celular é necessário tocar com o dedo na tela.",  WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 60);
-      ctx.fillText("Para sair dessa tela é necessário clicar ou tocar em qualquer parte da tela.",  WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 90);
+      ctx.fillText("Para desviar dos obstáculos (pular) é necessário:", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 30);
+      ctx.fillText("- Clicar com o mouse na tela (Desktop).", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 60);
+      ctx.fillText("- Tocar com o dedo na tela (Mobile).",  WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 90);
+      ctx.fillText("Clique ou toque em qualquer parte da tela para sair do tutorial.",  WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 120);
       break;
     case states.playing:
       ctx.fillStyle = "#fff";
