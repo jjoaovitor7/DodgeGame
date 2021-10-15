@@ -257,13 +257,13 @@ function draw() {
   switch (state) {
     case states.init:
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 30px Arial";
+      ctx.font = "bold 3rem Arial";
       ctx.fillText("Iniciar", WIDTH / 2 - 75, HEIGHT / 2);
       ctx.fillText("Tutorial", WIDTH / 2 - 75, (HEIGHT / 2 )+ 50);
       break;
     case states.tutorial:
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 14px Arial";
+      ctx.font = "bold 1.4rem Arial";
       ctx.fillText("O DodgeGame consiste em desviar de obstáculos.", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 );
       ctx.fillText("Para desviar dos obstáculos (pular) é necessário clicar com o mouse na tela.", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 30);
       ctx.fillText("No celular é necessário tocar com o dedo na tela.",  WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 60);
@@ -271,13 +271,13 @@ function draw() {
       break;
     case states.playing:
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 30px Arial";
+      ctx.font = "bold 3rem Arial";
       ctx.fillText(score, 10, 50);
       obstacles.draw();
       break;
     case states.lost:
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 30px Arial";
+      ctx.font = "bold 3rem Arial";
       ctx.fillText("Game Over", WIDTH / 2 - 75, HEIGHT / 2);
       ctx.fillText(`Score: ${score}`, WIDTH / 2 - 75, HEIGHT / 2 + 40);
       break;
