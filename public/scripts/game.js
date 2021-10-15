@@ -263,7 +263,7 @@ function draw() {
       break;
     case states.tutorial:
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 16px Arial";
+      ctx.font = "bold 14px Arial";
       ctx.fillText("O DodgeGame consiste em desviar de obstáculos.", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 );
       ctx.fillText("Para desviar dos obstáculos (pular) é necessário clicar com o mouse na tela.", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 30);
       ctx.fillText("No celular é necessário tocar com o dedo na tela.",  WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 60);
