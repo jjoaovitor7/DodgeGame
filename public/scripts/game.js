@@ -200,6 +200,10 @@ function getXY(canvas, e) {
 
 // EVENTO DE CLICAR
 function click(event) {
+  if (state == states.tutorial) {
+    state = states.init;
+  }
+
   let xy = getXY(canvas, event);
 
   if (xy.x >= canvas.width / 3 && xy.x <= (canvas.width + 20) / 2) {
@@ -212,11 +216,6 @@ function click(event) {
     else if (xy.y >= (canvas.height / 3) + 120 && xy.y <= (canvas.height + 100) / 2) {
       if (state == states.init) {
         state = states.tutorial;
-      }
-    }
-    else {
-      if (state == states.tutorial) {
-        state = states.init;
       }
     }
   }
@@ -257,12 +256,18 @@ function draw() {
   switch (state) {
     case states.init:
       ctx.fillStyle = "#fff";
+      ctx.fillRect(WIDTH / 2 - 80, HEIGHT / 2 + 10, 100, -40);
+      ctx.fillStyle = "#000";
       ctx.font = "bold 3rem Arial";
       ctx.fillText("Iniciar", WIDTH / 2 - 75, HEIGHT / 2);
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(WIDTH / 2 - 80, HEIGHT / 2 + 60, 120, -40);
+      ctx.fillStyle = "#000";
+      ctx.font = "bold 3rem Arial";
       ctx.fillText("Tutorial", WIDTH / 2 - 75, (HEIGHT / 2 )+ 50);
       break;
     case states.tutorial:
-      ctx.fillStyle = "#fff";
+      ctx.fillStyle = "#000";
       ctx.font = "bold 1.5rem Arial";
       ctx.fillText("O DodgeGame consiste em desviar de obstáculos.", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 );
       ctx.fillText("Para desviar dos obstáculos (pular) é necessário:", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 30);
@@ -271,13 +276,13 @@ function draw() {
       ctx.fillText("Clique ou toque em qualquer parte da tela para sair do tutorial.",  WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 120);
       break;
     case states.playing:
-      ctx.fillStyle = "#fff";
+      ctx.fillStyle = "#000";
       ctx.font = "bold 3rem Arial";
       ctx.fillText(score, 10, 50);
       obstacles.draw();
       break;
     case states.lost:
-      ctx.fillStyle = "#fff";
+      ctx.fillStyle = "#000";
       ctx.font = "bold 3rem Arial";
       ctx.fillText("Game Over", WIDTH / 2 - 75, HEIGHT / 2);
       ctx.fillText(`Score: ${score}`, WIDTH / 2 - 75, HEIGHT / 2 + 40);
