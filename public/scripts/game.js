@@ -207,7 +207,6 @@ function click(event) {
   let xy = getXY(canvas, event);
 
   if (xy.x >= canvas.width / 3 && xy.x <= (canvas.width + 20) / 2) {
-    console.log(xy.y)
     if (xy.y >= canvas.height / 3 && xy.y <= (canvas.height + 20) / 2) {
       if (state == states.init) {
         state = states.playing;
@@ -268,7 +267,14 @@ function draw() {
       break;
     case states.tutorial:
       ctx.fillStyle = "#000";
-      ctx.font = "bold 1.5rem Arial";
+
+      if (WIDTH > 768) {
+        ctx.font = "bold 1.5rem Arial";
+      }
+      else {
+        ctx.font = "bold 1rem Arial";
+      }
+     
       ctx.fillText("O DodgeGame consiste em desviar de obstáculos.", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 );
       ctx.fillText("Para desviar dos obstáculos (pular) é necessário:", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 30);
       ctx.fillText("- Clicar com o mouse na tela (Desktop).", WIDTH / 2 - (WIDTH * 0.45), HEIGHT / 2 + 60);
